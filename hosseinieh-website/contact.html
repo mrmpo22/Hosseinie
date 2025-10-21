@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تماس با ما | حسینیه سیدالشهدا</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet">
+</head>
+<body class="contact-page">
+    <div class="particles-bg"></div>
+
+    <!-- هدر -->
+    <header class="header glass-effect">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🕌</div>
+                    <div class="logo-text">
+                        <h1>حسینیه سیدالشهدا</h1>
+                        <p class="tagline">یا حسین (ع)</p>
+                    </div>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="منو">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="nav" id="mainNav">
+                    <ul>
+                        <li><a href="index.html">صفحه اصلی</a></li>
+                        <li><a href="programs.html">برنامه‌های روزانه</a></li>
+                        <li><a href="tafsir.html">تفسیر قرآن</a></li>
+                        <li><a href="archive.html">آرشیو</a></li>
+                        <li><a href="contact.html" class="active">تماس با ما</a></li>
+                        <li><a href="admin.html" class="admin-link">مدیریت</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <div class="page-badge">ارتباط با ما</div>
+                <h1 class="page-title">📞 تماس با ما</h1>
+                <p class="page-subtitle">ما همیشه آماده پاسخگویی به شما هستیم</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- اطلاعات تماس -->
+    <section class="contact-info-section">
+        <div class="container">
+            <div class="contact-info-grid">
+                <div class="contact-info-card glass-effect">
+                    <div class="contact-info-icon">📍</div>
+                    <h3>آدرس</h3>
+                    <p>تهران، خیابان انقلاب، نبش خیابان شهید رجایی</p>
+                    <a href="https://maps.google.com" target="_blank" class="btn-modern btn-small">
+                        <span>مشاهده در نقشه</span>
+                        <i>🗺️</i>
+                    </a>
+                </div>
+
+                <div class="contact-info-card glass-effect">
+                    <div class="contact-info-icon">📞</div>
+                    <h3>تلفن تماس</h3>
+                    <p>۰۲۱-۶۶۴۰۵۰۰۰</p>
+                    <p>۰۹۱۲-۳۴۵۶۷۸۹</p>
+                    <a href="tel:02166405000" class="btn-modern btn-small">
+                        <span>تماس مستقیم</span>
+                        <i>📱</i>
+                    </a>
+                </div>
+
+                <div class="contact-info-card glass-effect">
+                    <div class="contact-info-icon">✉️</div>
+                    <h3>ایمیل</h3>
+                    <p>info@hosseinieh.ir</p>
+                    <p>support@hosseinieh.ir</p>
+                    <a href="mailto:info@hosseinieh.ir" class="btn-modern btn-small">
+                        <span>ارسال ایمیل</span>
+                        <i>📧</i>
+                    </a>
+                </div>
+
+                <div class="contact-info-card glass-effect">
+                    <div class="contact-info-icon">🕒</div>
+                    <h3>ساعات کاری</h3>
+                    <p>شنبه تا پنجشنبه</p>
+                    <p>۸:۰۰ صبح تا ۱۰:۰۰ شب</p>
+                    <div class="work-hours-badge">
+                        <span class="status-dot"></span>
+                        <span>هم‌اکنون باز است</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- فرم تماس -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="contact-form-wrapper">
+                <div class="contact-form-header">
+                    <h2>💌 ارسال پیام</h2>
+                    <p>پیام خود را برای ما ارسال کنید</p>
+                </div>
+                <form id="contactForm" class="contact-form-modern glass-effect">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>نام و نام خانوادگی</label>
+                            <input type="text" placeholder="نام خود را وارد کنید" required>
+                        </div>
+                        <div class="form-group">
+                            <label>شماره موبایل</label>
+                            <input type="tel" placeholder="۰۹۱۲ XXX XXXX" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>ایمیل</label>
+                        <input type="email" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>موضوع</label>
+                        <select required>
+                            <option value="">انتخاب کنید</option>
+                            <option>سوال درباره برنامه‌ها</option>
+                            <option>ثبت‌نام در گروه‌ها</option>
+                            <option>پیشنهاد و انتقاد</option>
+                            <option>درخواست همکاری</option>
+                            <option>سایر موارد</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>پیام شما</label>
+                        <textarea placeholder="پیام خود را اینجا بنویسید..." rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-modern btn-primary-modern btn-full">
+                        <span>ارسال پیام</span>
+                        <i>✓</i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- نقشه (فرضی) -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-card glass-effect">
+                <div class="map-placeholder">
+                    <div class="map-icon">🗺️</div>
+                    <h3>موقعیت حسینیه سیدالشهدا</h3>
+                    <p>تهران، خیابان انقلاب، نبش خیابان شهید رجایی</p>
+                    <a href="https://maps.google.com" target="_blank" class="btn-modern btn-primary-modern">
+                        <span>مشاهده در Google Maps</span>
+                        <i>→</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>حسینیه سیدالشهدا</h3>
+                    <p>خادم شما در مسیر ولایت و فرهنگ حسینی</p>
+                </div>
+                <div class="footer-section">
+                    <h3>دسترسی سریع</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">صفحه اصلی</a></li>
+                        <li><a href="programs.html">برنامه‌های روزانه</a></li>
+                        <li><a href="archive.html">آرشیو</a></li>
+                        <li><a href="contact.html">تماس با ما</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; ۱۴۰۳ حسینیه سیدالشهدا. تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+        <button class="hidden-key" onclick="window.location.href='admin.html'">🔑</button>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script>
+        function createParticles() {
+            const container = document.querySelector('.particles-bg');
+            if (!container) return;
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // فرم تماس
+        document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('✅ پیام شما با موفقیت ارسال شد! به زودی با شما تماس خواهیم گرفت.');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>

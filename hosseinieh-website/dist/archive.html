@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آرشیو برنامه‌ها | حسینیه سیدالشهدا</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet">
+</head>
+<body class="archive-page">
+    <div class="particles-bg"></div>
+
+    <!-- هدر -->
+    <header class="header glass-effect">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🕌</div>
+                    <div class="logo-text">
+                        <h1>حسینیه سیدالشهدا</h1>
+                        <p class="tagline">یا حسین (ع)</p>
+                    </div>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="منو">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="nav" id="mainNav">
+                    <ul>
+                        <li><a href="index.html">صفحه اصلی</a></li>
+                        <li><a href="programs.html">برنامه‌های روزانه</a></li>
+                        <li><a href="tafsir.html">تفسیر قرآن</a></li>
+                        <li><a href="archive.html" class="active">آرشیو</a></li>
+                        <li><a href="contact.html">تماس با ما</a></li>
+                        <li><a href="admin.html" class="admin-link">مدیریت</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <div class="page-badge">آرشیو کامل</div>
+                <h1 class="page-title">📚 آرشیو برنامه‌ها</h1>
+                <p class="page-subtitle">دسترسی به تمام برنامه‌های گذشته</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- فیلترها -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-card glass-effect">
+                <div class="filter-group">
+                    <label>🔍 جستجو</label>
+                    <input type="text" id="searchArchive" placeholder="جستجو در عنوان یا توضیحات...">
+                </div>
+                <div class="filter-group">
+                    <label>📁 دسته‌بندی</label>
+                    <select id="filterCategory">
+                        <option value="">همه دسته‌ها</option>
+                        <option value="محرم">محرم</option>
+                        <option value="صفر">صفر</option>
+                        <option value="رمضان">رمضان</option>
+                        <option value="مناسبت">مناسبت‌های دیگر</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- آرشیو -->
+    <section class="archive-section-modern">
+        <div class="container">
+            <div class="archive-grid-modern" id="archiveGrid">
+                <!-- آرشیو به صورت داینامیک اضافه می‌شود -->
+            </div>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>حسینیه سیدالشهدا</h3>
+                    <p>خادم شما در مسیر ولایت و فرهنگ حسینی</p>
+                </div>
+                <div class="footer-section">
+                    <h3>دسترسی سریع</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">صفحه اصلی</a></li>
+                        <li><a href="programs.html">برنامه‌های روزانه</a></li>
+                        <li><a href="archive.html">آرشیو</a></li>
+                        <li><a href="contact.html">تماس با ما</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; ۱۴۰۳ حسینیه سیدالشهدا. تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+        <button class="hidden-key" onclick="window.location.href='admin.html'">🔑</button>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script>
+        function createParticles() {
+            const container = document.querySelector('.particles-bg');
+            if (!container) return;
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+    </script>
+</body>
+</html>

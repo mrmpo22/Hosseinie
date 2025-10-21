@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفسیر صفحات قرآن | حسینیه سیدالشهدا</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet">
+</head>
+<body class="tafsir-page">
+    <div class="particles-bg"></div>
+
+    <!-- هدر -->
+    <header class="header glass-effect">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🕌</div>
+                    <div class="logo-text">
+                        <h1>حسینیه سیدالشهدا</h1>
+                        <p class="tagline">یا حسین (ع)</p>
+                    </div>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="منو">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="nav" id="mainNav">
+                    <ul>
+                        <li><a href="index.html">صفحه اصلی</a></li>
+                        <li><a href="programs.html">برنامه‌های روزانه</a></li>
+                        <li><a href="tafsir.html" class="active">تفسیر قرآن</a></li>
+                        <li><a href="archive.html">آرشیو</a></li>
+                        <li><a href="contact.html">تماس با ما</a></li>
+                        <li><a href="admin.html" class="admin-link">مدیریت</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <div class="page-badge">تفسیر و معارف قرآنی</div>
+                <h1 class="page-title">📖 تفسیر صفحات قرآن</h1>
+                <p class="page-subtitle">درک عمیق‌تر از کلام وحی</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- فیلترها -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-card glass-effect">
+                <div class="filter-group">
+                    <label>🔍 جستجو</label>
+                    <input type="text" id="searchTafsir" placeholder="جستجو در تفاسیر...">
+                </div>
+                <div class="filter-group">
+                    <label>📗 جزء قرآن</label>
+                    <select id="filterJoz">
+                        <option value="">همه اجزاء</option>
+                        <option value="1">جزء 1</option>
+                        <option value="2">جزء 2</option>
+                        <option value="3">جزء 3</option>
+                        <option value="4">جزء 4</option>
+                        <option value="5">جزء 5</option>
+                        <option value="10">جزء 10</option>
+                        <option value="15">جزء 15</option>
+                        <option value="20">جزء 20</option>
+                        <option value="25">جزء 25</option>
+                        <option value="30">جزء 30</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>📚 سوره</label>
+                    <select id="filterSurah">
+                        <option value="">همه سوره‌ها</option>
+                        <option value="بقره">بقره</option>
+                        <option value="آل‌عمران">آل‌عمران</option>
+                        <option value="یوسف">یوسف</option>
+                        <option value="یس">یس</option>
+                        <option value="رحمن">رحمن</option>
+                        <option value="واقعه">واقعه</option>
+                        <option value="ملک">ملک</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- لیست تفاسیر -->
+    <section class="tafsir-section">
+        <div class="container">
+            <div class="tafsir-grid" id="tafsirGrid">
+                <!-- تفاسیر به صورت داینامیک اضافه می‌شوند -->
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش دعوت -->
+    <section class="invite-section">
+        <div class="container">
+            <div class="invite-card glass-effect">
+                <div class="invite-icon">📿</div>
+                <h2>در جلسات تفسیر قرآن شرکت کنید</h2>
+                <p>هر هفته جلسات تفسیر قرآن با حضور اساتید برجسته برگزار می‌شود</p>
+                <a href="contact.html" class="btn-modern btn-primary-modern">
+                    <span>اطلاعات بیشتر</span>
+                    <i>←</i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>حسینیه سیدالشهدا</h3>
+                    <p>خادم شما در مسیر ولایت و فرهنگ حسینی</p>
+                </div>
+                <div class="footer-section">
+                    <h3>دسترسی سریع</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">صفحه اصلی</a></li>
+                        <li><a href="programs.html">برنامه‌های روزانه</a></li>
+                        <li><a href="tafsir.html">تفسیر قرآن</a></li>
+                        <li><a href="archive.html">آرشیو</a></li>
+                        <li><a href="contact.html">تماس با ما</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; ۱۴۰۳ حسینیه سیدالشهدا. تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+        <button class="hidden-key" onclick="window.location.href='admin.html'">🔑</button>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script>
+        function createParticles() {
+            const container = document.querySelector('.particles-bg');
+            if (!container) return;
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+    </script>
+</body>
+</html>

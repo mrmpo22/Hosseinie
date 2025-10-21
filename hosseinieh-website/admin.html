@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل مدیریت | حسینیه سیدالشهدا</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet">
+</head>
+<body class="admin-page">
+    <div class="particles-bg"></div>
+
+    <!-- Modal رمز عبور -->
+    <div class="modal active" id="passwordModal">
+        <div class="modal-content glass-effect">
+            <div class="modal-icon">🔐</div>
+            <h3>ورود به پنل مدیریت</h3>
+            <p class="modal-subtitle">لطفاً رمز عبور را وارد کنید</p>
+            <input type="password" id="passwordInput" placeholder="رمز عبور" autofocus>
+            <button class="btn-modern btn-primary-modern btn-full" id="submitPassword">
+                <span>ورود</span>
+                <i>→</i>
+            </button>
+            <p class="modal-hint">💡 رمز پیش‌فرض: <code>123456</code></p>
+            <a href="index.html" class="back-link">← بازگشت به صفحه اصلی</a>
+        </div>
+    </div>
+
+    <!-- Admin Panel (مخفی تا لاگین) -->
+    <div class="admin-panel" id="adminPanel" style="display: none;">
+        <!-- هدر -->
+        <header class="admin-header glass-effect">
+            <div class="admin-header-content">
+                <div class="admin-logo">
+                    <div class="admin-logo-icon">⚙️</div>
+                    <div>
+                        <h1>پنل مدیریت</h1>
+                        <p>حسینیه سیدالشهدا</p>
+                    </div>
+                </div>
+                <div class="admin-actions">
+                    <a href="index.html" class="btn-modern btn-secondary-modern btn-small">
+                        <span>مشاهده سایت</span>
+                        <i>🌐</i>
+                    </a>
+                    <button class="btn-modern btn-logout" id="logoutBtn">
+                        <span>خروج</span>
+                        <i>🚪</i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar + Content -->
+        <div class="admin-layout">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar glass-effect">
+                <nav class="admin-nav">
+                    <a href="#" class="admin-nav-item active" data-section="social">
+                        <i>📱</i>
+                        <span>شبکه‌های اجتماعی</span>
+                    </a>
+                    <a href="#" class="admin-nav-item" data-section="daily">
+                        <i>📅</i>
+                        <span>برنامه‌های روزانه</span>
+                    </a>
+                    <a href="#" class="admin-nav-item" data-section="tafsir">
+                        <i>📖</i>
+                        <span>تفسیر قرآن</span>
+                    </a>
+                    <a href="#" class="admin-nav-item" data-section="archive">
+                        <i>📚</i>
+                        <span>آرشیو</span>
+                    </a>
+                    <a href="#" class="admin-nav-item" data-section="files">
+                        <i>🖼️</i>
+                        <span>مدیریت فایل‌ها</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="admin-content">
+                <!-- شبکه‌های اجتماعی -->
+                <section class="admin-section active" id="socialSection">
+                    <div class="section-header">
+                        <h2>📱 مدیریت شبکه‌های اجتماعی</h2>
+                        <p>افزودن و حذف لینک‌های شبکه‌های اجتماعی</p>
+                    </div>
+                    <div class="admin-card glass-effect">
+                        <h3>افزودن لینک جدید</h3>
+                        <form id="socialForm" class="admin-form">
+                            <input type="text" id="socialName" placeholder="نام شبکه (مثال: تلگرام)" required>
+                            <input type="url" id="socialUrl" placeholder="https://..." required>
+                            <input type="text" id="socialIcon" placeholder="آیکون/ایموجی شبکه (مثال: 📱)" required>
+                            <div class="form-hint" style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 15px;">
+                                💡 برای آیکون می‌توانید از ایموجی استفاده کنید: 📱 📞 ✉️ 🌐 📧 💬 📲
+                            </div>
+                            <button type="submit" class="btn-modern btn-primary-modern">
+                                <span>افزودن لینک</span>
+                                <i>+</i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="admin-card glass-effect">
+                        <h3>لیست لینک‌ها</h3>
+                        <div id="socialList" class="admin-list"></div>
+                    </div>
+                </section>
+
+                <!-- برنامه‌های روزانه -->
+                <section class="admin-section" id="dailySection">
+                    <div class="section-header">
+                        <h2>📅 مدیریت برنامه‌های روزانه</h2>
+                        <p>افزودن برنامه برای سه گروه</p>
+                    </div>
+                    <div class="admin-card glass-effect">
+                        <h3>افزودن برنامه جدید</h3>
+                        <form id="dailyForm" class="admin-form">
+                            <select id="groupSelect" required>
+                                <option value="">انتخاب گروه</option>
+                                <option value="قاسم">گروه حضرت قاسم بن الحسن (ع)</option>
+                                <option value="فهمیده">گروه شهید فهمیده</option>
+                                <option value="عمار">گروه حضرت عمار بن یاسر</option>
+                            </select>
+                            <input type="text" id="programTitle" placeholder="عنوان برنامه" required>
+                            <textarea id="programDesc" placeholder="توضیحات" rows="3" required></textarea>
+                            <input type="time" id="programTime" required>
+                            <button type="submit" class="btn-modern btn-primary-modern">
+                                <span>افزودن برنامه</span>
+                                <i>+</i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="admin-card glass-effect">
+                        <h3>لیست برنامه‌ها</h3>
+                        <div id="dailyList" class="admin-list"></div>
+                    </div>
+                </section>
+
+                <!-- تفسیر قرآن -->
+                <section class="admin-section" id="tafsirSection">
+                    <div class="section-header">
+                        <h2>📖 مدیریت تفسیر قرآن</h2>
+                        <p>افزودن تفاسیر صفحات قرآن</p>
+                    </div>
+                    <div class="admin-card glass-effect">
+                        <h3>افزودن تفسیر جدید</h3>
+                        <form id="tafsirForm" class="admin-form">
+                            <input type="text" id="tafsirTitle" placeholder="عنوان تفسیر" required>
+                            <div class="form-row">
+                                <select id="tafsirJoz" required>
+                                    <option value="">انتخاب جزء</option>
+                                    <option value="1">جزء 1</option>
+                                    <option value="2">جزء 2</option>
+                                    <option value="3">جزء 3</option>
+                                    <option value="5">جزء 5</option>
+                                    <option value="10">جزء 10</option>
+                                    <option value="15">جزء 15</option>
+                                    <option value="20">جزء 20</option>
+                                    <option value="25">جزء 25</option>
+                                    <option value="30">جزء 30</option>
+                                </select>
+                                <input type="text" id="tafsirSurah" placeholder="نام سوره" required>
+                            </div>
+                            <div class="form-row">
+                                <input type="number" id="tafsirPage" placeholder="شماره صفحه" required>
+                                <input type="text" id="tafsirAyah" placeholder="شماره آیات (مثال: 1-5)" required>
+                            </div>
+                            <textarea id="tafsirContent" placeholder="متن تفسیر..." rows="5" required></textarea>
+                            <input type="text" id="tafsirSpeaker" placeholder="نام استاد (اختیاری)">
+                            <input type="file" id="tafsirFile" accept="audio/*,video/*">
+                            <button type="submit" class="btn-modern btn-primary-modern">
+                                <span>افزودن تفسیر</span>
+                                <i>+</i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="admin-card glass-effect">
+                        <h3>لیست تفاسیر</h3>
+                        <div id="tafsirList" class="admin-list"></div>
+                    </div>
+                </section>
+
+                <!-- آرشیو -->
+                <section class="admin-section" id="archiveSection">
+                    <div class="section-header">
+                        <h2>📚 مدیریت آرشیو</h2>
+                        <p>افزودن برنامه‌ها به آرشیو</p>
+                    </div>
+                    <div class="admin-card glass-effect">
+                        <h3>افزودن به آرشیو</h3>
+                        <form id="archiveForm" class="admin-form">
+                            <input type="text" id="archiveTitle" placeholder="عنوان" required>
+                            <textarea id="archiveDesc" placeholder="توضیحات" rows="3" required></textarea>
+                            <div class="form-row">
+                                <input type="date" id="archiveDate" required>
+                                <select id="archiveCategory" required>
+                                    <option value="">دسته‌بندی</option>
+                                    <option value="محرم">محرم</option>
+                                    <option value="صفر">صفر</option>
+                                    <option value="رمضان">رمضان</option>
+                                    <option value="مناسبت">مناسبت‌های دیگر</option>
+                                </select>
+                            </div>
+                            <input type="file" id="archiveFile" accept="image/*,video/*,audio/*">
+                            <button type="submit" class="btn-modern btn-primary-modern">
+                                <span>افزودن به آرشیو</span>
+                                <i>+</i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="admin-card glass-effect">
+                        <h3>لیست آرشیو</h3>
+                        <div id="archiveList" class="admin-list"></div>
+                    </div>
+                </section>
+
+                <!-- فایل‌ها -->
+                <section class="admin-section" id="filesSection">
+                    <div class="section-header">
+                        <h2>🖼️ مدیریت فایل‌ها</h2>
+                        <p>آپلود و مدیریت تصاویر</p>
+                    </div>
+                    <div class="admin-card glass-effect">
+                        <h3>آپلود فایل‌ها</h3>
+                        <div class="file-upload-area">
+                            <input type="file" id="fileUpload" accept="image/*" multiple>
+                            <select id="fileCategory">
+                                <option value="محرم">محرم</option>
+                                <option value="صفر">صفر</option>
+                                <option value="رمضان">رمضان</option>
+                                <option value="عمومی">عمومی</option>
+                            </select>
+                            <button id="uploadFiles" class="btn-modern btn-primary-modern">
+                                <span>آپلود</span>
+                                <i>⬆️</i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="admin-card glass-effect">
+                        <h3>فایل‌های آپلود شده</h3>
+                        <div id="filesList" class="files-grid-admin"></div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="scripts.js"></script>
+    <script>
+        // Particles
+        function createParticles() {
+            const container = document.querySelector('.particles-bg');
+            if (!container) return;
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Login
+        document.getElementById('submitPassword')?.addEventListener('click', checkPassword);
+        document.getElementById('passwordInput')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkPassword();
+        });
+
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            if (password === '123456') {
+                document.getElementById('passwordModal').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                localStorage.setItem('hosseinieh_auth', 'true');
+            } else {
+                alert('❌ رمز عبور اشتباه است!');
+                document.getElementById('passwordInput').value = '';
+            }
+        }
+
+        // Logout
+        document.getElementById('logoutBtn')?.addEventListener('click', () => {
+            localStorage.removeItem('hosseinieh_auth');
+            window.location.reload();
+        });
+
+        // Navigation
+        document.querySelectorAll('.admin-nav-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = e.currentTarget.getAttribute('data-section');
+                
+                document.querySelectorAll('.admin-nav-item').forEach(i => i.classList.remove('active'));
+                document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+                
+                e.currentTarget.classList.add('active');
+                document.getElementById(section + 'Section').classList.add('active');
+            });
+        });
+
+        // Check if already logged in
+        if (localStorage.getItem('hosseinieh_auth') === 'true') {
+            document.getElementById('passwordModal').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
