@@ -306,11 +306,219 @@
             });
         });
 
-        // Check if already logged in
-        if (localStorage.getItem('hosseinieh_auth') === 'true') {
-            document.getElementById('passwordModal').style.display = 'none';
-            document.getElementById('adminPanel').style.display = 'block';
+        // همیشه رمز بخواهد (حذف auto-login)
+        // هر بار باید رمز وارد شود
+        localStorage.removeItem('hosseinieh_auth');
+        
+        // مدیریت شبکه‌های اجتماعی
+        document.getElementById('socialForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('socialName').value;
+            const url = document.getElementById('socialUrl').value;
+            const icon = document.getElementById('socialIcon').value;
+            
+            const links = JSON.parse(localStorage.getItem('hosseinieh_social_links') || '[]');
+            links.push({ id: Date.now(), name, url, icon });
+            localStorage.setItem('hosseinieh_social_links', JSON.stringify(links));
+            
+            e.target.reset();
+            loadSocialList();
+            showToast('✅ لینک با موفقیت اضافه شد');
+        });
+        
+        function loadSocialList() {
+            const links = JSON.parse(localStorage.getItem('hosseinieh_social_links') || '[]');
+            const container = document.getElementById('socialList');
+            if (!container) return;
+            
+            container.innerHTML = links.length === 0 ? 
+                '<p style="text-align:center;color:var(--text-light);padding:20px">لینکی موجود نیست</p>' :
+                links.map(link => `
+                    <div class="admin-list-item">
+                        <div>
+                            <h4>${link.icon} ${link.name}</h4>
+                            <p>${link.url}</p>
+                        </div>
+                        <button class="btn-modern btn-logout btn-small" onclick="deleteSocial(${link.id})">
+                            <span>حذف</span>
+                            <i>🗑️</i>
+                        </button>
+                    </div>
+                `).join('');
         }
+        
+        function deleteSocial(id) {
+            if (confirm('آیا مطمئن هستید؟')) {
+                let links = JSON.parse(localStorage.getItem('hosseinieh_social_links') || '[]');
+                links = links.filter(l => l.id !== id);
+                localStorage.setItem('hosseinieh_social_links', JSON.stringify(links));
+                loadSocialList();
+                showToast('✅ لینک حذف شد');
+            }
+        }
+        
+        // مدیریت برنامه‌های روزانه
+        document.getElementById('dailyForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const group = document.getElementById('groupSelect').value;
+            const title = document.getElementById('programTitle').value;
+            const description = document.getElementById('programDesc').value;
+            const time = document.getElementById('programTime').value;
+            
+            const programs = JSON.parse(localStorage.getItem('hosseinieh_daily_programs') || '[]');
+            programs.push({ id: Date.now(), group, title, description, time });
+            localStorage.setItem('hosseinieh_daily_programs', JSON.stringify(programs));
+            
+            e.target.reset();
+            loadDailyList();
+            showToast('✅ برنامه با موفقیت اضافه شد');
+        });
+        
+        function loadDailyList() {
+            const programs = JSON.parse(localStorage.getItem('hosseinieh_daily_programs') || '[]');
+            const container = document.getElementById('dailyList');
+            if (!container) return;
+            
+            container.innerHTML = programs.length === 0 ?
+                '<p style="text-align:center;color:var(--text-light);padding:20px">برنامه‌ای موجود نیست</p>' :
+                programs.map(p => `
+                    <div class="admin-list-item">
+                        <div>
+                            <h4>${p.title} - گروه ${p.group}</h4>
+                            <p>${p.description} (⏰ ${p.time})</p>
+                        </div>
+                        <button class="btn-modern btn-logout btn-small" onclick="deleteDaily(${p.id})">
+                            <span>حذف</span>
+                            <i>🗑️</i>
+                        </button>
+                    </div>
+                `).join('');
+        }
+        
+        function deleteDaily(id) {
+            if (confirm('آیا مطمئن هستید؟')) {
+                let programs = JSON.parse(localStorage.getItem('hosseinieh_daily_programs') || '[]');
+                programs = programs.filter(p => p.id !== id);
+                localStorage.setItem('hosseinieh_daily_programs', JSON.stringify(programs));
+                loadDailyList();
+                showToast('✅ برنامه حذف شد');
+            }
+        }
+        
+        // مدیریت تفسیر
+        document.getElementById('tafsirForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('tafsirTitle').value;
+            const joz = document.getElementById('tafsirJoz').value;
+            const surah = document.getElementById('tafsirSurah').value;
+            const page = document.getElementById('tafsirPage').value;
+            const ayah = document.getElementById('tafsirAyah').value;
+            const content = document.getElementById('tafsirContent').value;
+            const speaker = document.getElementById('tafsirSpeaker').value;
+            
+            const tafsirs = JSON.parse(localStorage.getItem('hosseinieh_tafsir') || '[]');
+            tafsirs.push({ id: Date.now(), title, joz, surah, page, ayah, content, speaker });
+            localStorage.setItem('hosseinieh_tafsir', JSON.stringify(tafsirs));
+            
+            e.target.reset();
+            loadTafsirList();
+            showToast('✅ تفسیر با موفقیت اضافه شد');
+        });
+        
+        function loadTafsirList() {
+            const tafsirs = JSON.parse(localStorage.getItem('hosseinieh_tafsir') || '[]');
+            const container = document.getElementById('tafsirList');
+            if (!container) return;
+            
+            container.innerHTML = tafsirs.length === 0 ?
+                '<p style="text-align:center;color:var(--text-light);padding:20px">تفسیری موجود نیست</p>' :
+                tafsirs.map(t => `
+                    <div class="admin-list-item">
+                        <div>
+                            <h4>${t.title}</h4>
+                            <p>سوره ${t.surah} - جزء ${t.joz} - صفحه ${t.page}</p>
+                        </div>
+                        <button class="btn-modern btn-logout btn-small" onclick="deleteTafsir(${t.id})">
+                            <span>حذف</span>
+                            <i>🗑️</i>
+                        </button>
+                    </div>
+                `).join('');
+        }
+        
+        function deleteTafsir(id) {
+            if (confirm('آیا مطمئن هستید؟')) {
+                let tafsirs = JSON.parse(localStorage.getItem('hosseinieh_tafsir') || '[]');
+                tafsirs = tafsirs.filter(t => t.id !== id);
+                localStorage.setItem('hosseinieh_tafsir', JSON.stringify(tafsirs));
+                loadTafsirList();
+                showToast('✅ تفسیر حذف شد');
+            }
+        }
+        
+        // مدیریت آرشیو
+        document.getElementById('archiveForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('archiveTitle').value;
+            const description = document.getElementById('archiveDesc').value;
+            const date = document.getElementById('archiveDate').value;
+            const category = document.getElementById('archiveCategory').value;
+            
+            const archives = JSON.parse(localStorage.getItem('hosseinieh_archive') || '[]');
+            archives.push({ id: Date.now(), title, description, date, category });
+            localStorage.setItem('hosseinieh_archive', JSON.stringify(archives));
+            
+            e.target.reset();
+            loadArchiveList();
+            showToast('✅ آرشیو با موفقیت اضافه شد');
+        });
+        
+        function loadArchiveList() {
+            const archives = JSON.parse(localStorage.getItem('hosseinieh_archive') || '[]');
+            const container = document.getElementById('archiveList');
+            if (!container) return;
+            
+            container.innerHTML = archives.length === 0 ?
+                '<p style="text-align:center;color:var(--text-light);padding:20px">آرشیوی موجود نیست</p>' :
+                archives.map(a => `
+                    <div class="admin-list-item">
+                        <div>
+                            <h4>${a.title}</h4>
+                            <p>${a.category} - ${a.date}</p>
+                        </div>
+                        <button class="btn-modern btn-logout btn-small" onclick="deleteArchive(${a.id})">
+                            <span>حذف</span>
+                            <i>🗑️</i>
+                        </button>
+                    </div>
+                `).join('');
+        }
+        
+        function deleteArchive(id) {
+            if (confirm('آیا مطمئن هستید؟')) {
+                let archives = JSON.parse(localStorage.getItem('hosseinieh_archive') || '[]');
+                archives = archives.filter(a => a.id !== id);
+                localStorage.setItem('hosseinieh_archive', JSON.stringify(archives));
+                loadArchiveList();
+                showToast('✅ آرشیو حذف شد');
+            }
+        }
+        
+        // Toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast success show';
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+        
+        // بارگذاری اولیه لیست‌ها
+        setTimeout(() => {
+            loadSocialList();
+            loadDailyList();
+            loadTafsirList();
+            loadArchiveList();
+        }, 500);
     </script>
 </body>
 </html>

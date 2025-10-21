@@ -102,6 +102,52 @@
 
     <script src="scripts.js"></script>
     <script>
+        // بارگذاری برنامه‌های روزانه
+        function loadDailyPrograms() {
+            const programs = JSON.parse(localStorage.getItem('hosseinieh_daily_programs') || '[]');
+            const container = document.getElementById('dailyProgramsGrid');
+            
+            if (!container) return;
+            
+            if (programs.length === 0) {
+                container.innerHTML = `
+                    <div class="program-card-modern glass-effect">
+                        <span class="program-group">گروه حضرت قاسم بن الحسن (ع)</span>
+                        <h3>مراسم عزاداری</h3>
+                        <span class="program-time">⏰ 18:00</span>
+                        <p>مجلس عزاداری حضرت اباعبدالله (ع)</p>
+                    </div>
+                    <div class="program-card-modern glass-effect">
+                        <span class="program-group">گروه شهید فهمیده</span>
+                        <h3>قرائت قرآن</h3>
+                        <span class="program-time">⏰ 17:00</span>
+                        <p>برگزاری جلسه قرائت و تفسیر قرآن</p>
+                    </div>
+                    <div class="program-card-modern glass-effect">
+                        <span class="program-group">گروه حضرت عمار بن یاسر</span>
+                        <h3>جلسه درس اخلاق</h3>
+                        <span class="program-time">⏰ 19:30</span>
+                        <p>آموزش معارف اسلامی و اخلاق</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = programs.map(p => `
+                <div class="program-card-modern glass-effect">
+                    <span class="program-group">گروه ${p.group === 'قاسم' ? 'حضرت قاسم بن الحسن (ع)' : p.group === 'فهمیده' ? 'شهید فهمیده' : 'حضرت عمار بن یاسر'}</span>
+                    <h3>${p.title}</h3>
+                    <span class="program-time">⏰ ${p.time}</span>
+                    <p>${p.description}</p>
+                </div>
+            `).join('');
+        }
+        
+        // منوی موبایل
+        document.getElementById('menuToggle')?.addEventListener('click', () => {
+            document.getElementById('mainNav')?.classList.toggle('active');
+        });
+        
         // Particles
         function createParticles() {
             const container = document.querySelector('.particles-bg');
@@ -116,7 +162,17 @@
                 container.appendChild(particle);
             }
         }
+        
+        // اجرا
         createParticles();
+        loadDailyPrograms();
+        
+        // بارگذاری مجدد هنگام تغییر
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'hosseinieh_daily_programs') {
+                loadDailyPrograms();
+            }
+        });
     </script>
 </body>
 </html>

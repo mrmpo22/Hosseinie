@@ -109,6 +109,106 @@
 
     <script src="scripts.js"></script>
     <script>
+        // بارگذاری آرشیو
+        function loadArchive() {
+            const archives = JSON.parse(localStorage.getItem('hosseinieh_archive') || '[]');
+            const container = document.getElementById('archiveGrid');
+            
+            if (!container) return;
+            
+            if (archives.length === 0) {
+                container.innerHTML = `
+                    <div class="archive-card-modern glass-effect">
+                        <div class="archive-card-content">
+                            <h3>مراسم عاشورا ۱۴۰۲</h3>
+                            <div class="archive-meta">
+                                <span class="archive-date">📅 1402-01-10</span>
+                                <span class="archive-category">محرم</span>
+                            </div>
+                            <p>مراسم عزاداری روز عاشورای حسینی</p>
+                            <a href="#" class="btn-modern btn-secondary-modern btn-small">
+                                <span>مشاهده</span>
+                                <i>→</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="archive-card-modern glass-effect">
+                        <div class="archive-card-content">
+                            <h3>شب احیاء رمضان</h3>
+                            <div class="archive-meta">
+                                <span class="archive-date">📅 1402-02-19</span>
+                                <span class="archive-category">رمضان</span>
+                            </div>
+                            <p>برنامه احیای شب‌های قدر ماه رمضان</p>
+                            <a href="#" class="btn-modern btn-secondary-modern btn-small">
+                                <span>مشاهده</span>
+                                <i>→</i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = archives.map(a => `
+                <div class="archive-card-modern glass-effect">
+                    <div class="archive-card-content">
+                        <h3>${a.title}</h3>
+                        <div class="archive-meta">
+                            <span class="archive-date">📅 ${a.date}</span>
+                            <span class="archive-category">${a.category}</span>
+                        </div>
+                        <p>${a.description}</p>
+                        <a href="#" class="btn-modern btn-secondary-modern btn-small">
+                            <span>مشاهده</span>
+                            <i>→</i>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // فیلترها
+        document.getElementById('searchArchive')?.addEventListener('input', filterArchive);
+        document.getElementById('filterCategory')?.addEventListener('change', filterArchive);
+        
+        function filterArchive() {
+            const search = document.getElementById('searchArchive')?.value.toLowerCase() || '';
+            const category = document.getElementById('filterCategory')?.value || '';
+            
+            const archives = JSON.parse(localStorage.getItem('hosseinieh_archive') || '[]');
+            const filtered = archives.filter(a => {
+                const matchSearch = a.title.toLowerCase().includes(search) || a.description.toLowerCase().includes(search);
+                const matchCategory = !category || a.category === category;
+                return matchSearch && matchCategory;
+            });
+            
+            const container = document.getElementById('archiveGrid');
+            container.innerHTML = filtered.length === 0 ?
+                '<p style="grid-column:1/-1;text-align:center;color:var(--text-light);padding:60px 20px">موردی یافت نشد</p>' :
+                filtered.map(a => `
+                    <div class="archive-card-modern glass-effect">
+                        <div class="archive-card-content">
+                            <h3>${a.title}</h3>
+                            <div class="archive-meta">
+                                <span class="archive-date">📅 ${a.date}</span>
+                                <span class="archive-category">${a.category}</span>
+                            </div>
+                            <p>${a.description}</p>
+                            <a href="#" class="btn-modern btn-secondary-modern btn-small">
+                                <span>مشاهده</span>
+                                <i>→</i>
+                            </a>
+                        </div>
+                    </div>
+                `).join('');
+        }
+        
+        // منوی موبایل
+        document.getElementById('menuToggle')?.addEventListener('click', () => {
+            document.getElementById('mainNav')?.classList.toggle('active');
+        });
+        
         function createParticles() {
             const container = document.querySelector('.particles-bg');
             if (!container) return;
@@ -122,7 +222,17 @@
                 container.appendChild(particle);
             }
         }
+        
+        // اجرا
         createParticles();
+        loadArchive();
+        
+        // بارگذاری مجدد
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'hosseinieh_archive') {
+                loadArchive();
+            }
+        });
     </script>
 </body>
 </html>

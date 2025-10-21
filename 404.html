@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه یافت نشد | حسینیه سیدالشهدا</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet">
+    <style>
+        .error-404 {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            padding: 40px 20px;
+        }
+        
+        .error-content {
+            text-align: center;
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .error-icon {
+            font-size: 10rem;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 10px 30px rgba(139,0,0,0.8));
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            background: var(--primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 50px rgba(139,0,0,0.5);
+        }
+        
+        .error-title {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .error-text {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="particles-bg"></div>
+    
+    <section class="error-404">
+        <div class="error-content">
+            <div class="error-icon">🕌</div>
+            <h1 class="error-code">404</h1>
+            <h2 class="error-title">صفحه مورد نظر یافت نشد</h2>
+            <p class="error-text">
+                متأسفانه صفحه‌ای که به دنبال آن هستید وجود ندارد یا منتقل شده است.
+                <br>
+                لطفاً از منوی زیر به بخش مورد نظر خود بروید.
+            </p>
+            <div class="error-actions">
+                <a href="index.html" class="btn-modern btn-primary-modern">
+                    <span>🏠 صفحه اصلی</span>
+                </a>
+                <a href="programs.html" class="btn-modern btn-secondary-modern">
+                    <span>📅 برنامه‌ها</span>
+                </a>
+                <a href="contact.html" class="btn-modern btn-secondary-modern">
+                    <span>📞 تماس با ما</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function createParticles() {
+            const container = document.querySelector('.particles-bg');
+            if (!container) return;
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+    </script>
+</body>
+</html>
