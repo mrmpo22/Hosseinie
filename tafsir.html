@@ -144,6 +144,74 @@
 
     <script src="scripts.js"></script>
     <script>
+        // بارگذاری تفاسیر
+        function loadTafsir() {
+            const tafsirs = JSON.parse(localStorage.getItem('hosseinieh_tafsir') || '[]');
+            const container = document.getElementById('tafsirGrid');
+            
+            if (!container) return;
+            
+            if (tafsirs.length === 0) {
+                container.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--text-light);padding:60px 20px">هنوز تفسیری اضافه نشده است. از بخش مدیریت می‌توانید تفسیر اضافه کنید.</p>';
+                return;
+            }
+            
+            container.innerHTML = tafsirs.map(t => `
+                <div class="tafsir-card glass-effect">
+                    <span class="tafsir-badge">جزء ${t.joz}</span>
+                    <h3>${t.title}</h3>
+                    <div class="tafsir-meta">
+                        <span class="tafsir-meta-item">📖 ${t.surah}</span>
+                        <span class="tafsir-meta-item">📄 صفحه ${t.page}</span>
+                        <span class="tafsir-meta-item">🔢 آیات ${t.ayah}</span>
+                    </div>
+                    ${t.speaker ? `<div class="tafsir-speaker">👤 ${t.speaker}</div>` : ''}
+                    <p>${t.content}</p>
+                </div>
+            `).join('');
+        }
+        
+        // فیلترها
+        document.getElementById('searchTafsir')?.addEventListener('input', filterTafsir);
+        document.getElementById('filterJoz')?.addEventListener('change', filterTafsir);
+        document.getElementById('filterSurah')?.addEventListener('change', filterTafsir);
+        
+        function filterTafsir() {
+            const search = document.getElementById('searchTafsir')?.value.toLowerCase() || '';
+            const joz = document.getElementById('filterJoz')?.value || '';
+            const surah = document.getElementById('filterSurah')?.value || '';
+            
+            const tafsirs = JSON.parse(localStorage.getItem('hosseinieh_tafsir') || '[]');
+            const filtered = tafsirs.filter(t => {
+                const matchSearch = t.title.toLowerCase().includes(search) || t.content.toLowerCase().includes(search);
+                const matchJoz = !joz || t.joz === joz;
+                const matchSurah = !surah || t.surah.includes(surah);
+                return matchSearch && matchJoz && matchSurah;
+            });
+            
+            const container = document.getElementById('tafsirGrid');
+            container.innerHTML = filtered.length === 0 ?
+                '<p style="grid-column:1/-1;text-align:center;color:var(--text-light);padding:60px 20px">موردی یافت نشد</p>' :
+                filtered.map(t => `
+                    <div class="tafsir-card glass-effect">
+                        <span class="tafsir-badge">جزء ${t.joz}</span>
+                        <h3>${t.title}</h3>
+                        <div class="tafsir-meta">
+                            <span class="tafsir-meta-item">📖 ${t.surah}</span>
+                            <span class="tafsir-meta-item">📄 صفحه ${t.page}</span>
+                            <span class="tafsir-meta-item">🔢 آیات ${t.ayah}</span>
+                        </div>
+                        ${t.speaker ? `<div class="tafsir-speaker">👤 ${t.speaker}</div>` : ''}
+                        <p>${t.content}</p>
+                    </div>
+                `).join('');
+        }
+        
+        // منوی موبایل
+        document.getElementById('menuToggle')?.addEventListener('click', () => {
+            document.getElementById('mainNav')?.classList.toggle('active');
+        });
+        
         function createParticles() {
             const container = document.querySelector('.particles-bg');
             if (!container) return;
@@ -157,7 +225,17 @@
                 container.appendChild(particle);
             }
         }
+        
+        // اجرا
         createParticles();
+        loadTafsir();
+        
+        // بارگذاری مجدد
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'hosseinieh_tafsir') {
+                loadTafsir();
+            }
+        });
     </script>
 </body>
 </html>
