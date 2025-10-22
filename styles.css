@@ -1605,6 +1605,35 @@ body {
 }
 
 /* ========== Responsive ========== */
+
+/* Tablet Landscape & Desktop Small (1024px - 1199px) */
+@media (max-width: 1199px) {
+    .container {
+        padding: 0 30px;
+    }
+    
+    .hero-title-modern {
+        font-size: 3.5rem;
+    }
+    
+    .section-title-modern {
+        font-size: 2.2rem;
+    }
+    
+    .quick-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .programs-grid-modern {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .tafsir-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablet (768px - 1023px) */
 @media (max-width: 1024px) {
     .admin-layout {
         grid-template-columns: 1fr;
@@ -1612,21 +1641,52 @@ body {
     
     .admin-sidebar {
         position: static;
+        margin-bottom: 30px;
     }
     
     .admin-nav {
         flex-direction: row;
         overflow-x: auto;
+        gap: 15px;
+        padding-bottom: 10px;
+    }
+    
+    .admin-nav-item {
+        min-width: 120px;
+        justify-content: center;
     }
     
     .admin-nav-item span {
-        display: none;
+        display: block;
+        font-size: 0.9rem;
+    }
+    
+    .admin-nav-item i {
+        font-size: 1.5rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
     }
 }
 
+/* Tablet Portrait & Mobile Landscape (481px - 768px) */
 @media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    /* Header & Navigation */
     .menu-toggle {
         display: flex;
+    }
+    
+    .logo-text h1 {
+        font-size: 1.4rem;
+    }
+    
+    .logo-icon {
+        font-size: 2rem;
     }
     
     .nav {
@@ -1634,24 +1694,68 @@ body {
         top: 100%;
         right: 0;
         left: 0;
-        background: rgba(0,0,0,0.95);
+        background: rgba(0,0,0,0.98);
         backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         padding: 20px;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease;
+        transition: max-height 0.4s ease;
+        border-bottom: 1px solid var(--glass-border);
     }
     
     .nav.active {
-        max-height: 400px;
+        max-height: 500px;
     }
     
     .nav ul {
         flex-direction: column;
-        gap: 5px;
+        gap: 10px;
+    }
+    
+    .nav a {
+        display: block;
+        padding: 15px 20px;
+        text-align: center;
+    }
+    
+    /* Hero Section */
+    .hero-modern {
+        min-height: 70vh;
+        padding: 80px 0 60px;
     }
     
     .hero-title-modern {
+        font-size: 2.8rem;
+        line-height: 1.3;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+    
+    .hero-actions .btn-modern {
+        width: 100%;
+    }
+    
+    /* Sections */
+    .section-title-modern {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .title-icon {
         font-size: 2.5rem;
     }
     
@@ -1659,63 +1763,523 @@ body {
         font-size: 2.5rem;
     }
     
+    .page-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    /* Grids */
     .quick-grid,
     .info-grid,
-    .contact-info-grid {
+    .contact-info-grid,
+    .social-grid-modern,
+    .programs-grid-modern,
+    .tafsir-grid,
+    .archive-grid-modern {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
     
+    /* Cards */
+    .quick-card,
+    .info-card,
+    .contact-info-card,
+    .social-card-modern,
+    .program-card-modern,
+    .tafsir-card,
+    .archive-card-modern {
+        padding: 30px 20px;
+    }
+    
+    .social-icon-large {
+        font-size: 3.5rem;
+    }
+    
+    /* Join Section */
     .join-content {
-        padding: 40px 30px;
+        padding: 40px 25px;
         flex-direction: column;
         text-align: center;
+        gap: 30px;
     }
     
+    .join-text h2 {
+        font-size: 1.8rem;
+    }
+    
+    .join-text p {
+        font-size: 1rem;
+    }
+    
+    /* Footer */
     .footer-content {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 30px;
     }
     
     .footer-social {
         justify-content: center;
     }
     
+    .footer-section h3 {
+        font-size: 1.3rem;
+    }
+    
+    /* Modals */
     .modal-content {
-        padding: 30px 20px;
+        padding: 40px 25px;
+        max-width: 90%;
+    }
+    
+    .modal-icon {
+        font-size: 3.5rem;
+    }
+    
+    .modal-content h3 {
+        font-size: 1.8rem;
+    }
+    
+    /* Filter Section */
+    .filter-card {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 20px;
+    }
+    
+    /* Admin */
+    .admin-header-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .admin-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .admin-actions .btn-modern {
+        width: 100%;
+    }
+    
+    .admin-logo {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .admin-card {
+        padding: 20px;
     }
     
     .file-upload-area {
         grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    /* Error 404 */
+    .error-icon {
+        font-size: 8rem;
+    }
+    
+    .error-code {
+        font-size: 6rem;
+    }
+    
+    .error-title {
+        font-size: 2rem;
+    }
+    
+    .error-text {
+        font-size: 1rem;
     }
 }
 
+/* Mobile (320px - 480px) */
 @media (max-width: 480px) {
-    .hero-title-modern {
-        font-size: 2rem;
+    .container {
+        padding: 0 15px;
     }
     
+    /* Header */
+    .logo-text h1 {
+        font-size: 1.2rem;
+    }
+    
+    .logo-icon {
+        font-size: 1.8rem;
+    }
+    
+    .tagline {
+        font-size: 0.8rem;
+    }
+    
+    /* Hero */
+    .hero-modern {
+        min-height: 60vh;
+        padding: 60px 0 40px;
+    }
+    
+    .hero-title-modern {
+        font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero-description {
+        font-size: 0.95rem;
+    }
+    
+    .hero-badge {
+        font-size: 0.85rem;
+        padding: 6px 15px;
+    }
+    
+    /* Sections */
     .section-title-modern {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+    
+    .title-icon {
+        font-size: 2.2rem;
     }
     
     .page-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
     
+    .page-badge {
+        font-size: 0.85rem;
+    }
+    
+    /* Buttons */
     .btn-modern {
-        padding: 12px 25px;
+        padding: 12px 20px;
+        font-size: 0.95rem;
     }
     
+    .btn-small {
+        padding: 8px 15px;
+        font-size: 0.85rem;
+    }
+    
+    /* Cards */
     .quick-card,
     .info-card,
     .contact-info-card {
+        padding: 25px 15px;
+    }
+    
+    .quick-icon,
+    .info-icon,
+    .contact-info-icon {
+        font-size: 2.5rem;
+    }
+    
+    .quick-card h3,
+    .info-card h3,
+    .contact-info-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .quick-card p,
+    .info-card p,
+    .contact-info-card p {
+        font-size: 0.9rem;
+    }
+    
+    /* Social Cards */
+    .social-card-modern {
+        padding: 25px 15px;
+    }
+    
+    .social-icon-large {
+        font-size: 3rem;
+    }
+    
+    .social-card-modern h3 {
+        font-size: 1.1rem;
+    }
+    
+    /* Programs */
+    .program-card-modern {
+        padding: 25px 15px;
+    }
+    
+    .program-card-modern h3 {
+        font-size: 1.2rem;
+    }
+    
+    .program-group {
+        font-size: 0.8rem;
+        padding: 5px 12px;
+    }
+    
+    .program-time {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+    
+    /* Tafsir */
+    .tafsir-card {
+        padding: 25px 15px;
+    }
+    
+    .tafsir-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .tafsir-badge {
+        font-size: 0.8rem;
+        padding: 5px 12px;
+    }
+    
+    .tafsir-meta {
+        font-size: 0.85rem;
+    }
+    
+    .tafsir-meta-item {
+        padding: 4px 10px;
+    }
+    
+    /* Archive */
+    .archive-card-modern {
+        padding: 0;
+    }
+    
+    .archive-card-content {
+        padding: 25px 15px;
+    }
+    
+    .archive-card-modern h3 {
+        font-size: 1.2rem;
+    }
+    
+    .archive-meta {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+    
+    .archive-category {
+        padding: 3px 10px;
+        font-size: 0.75rem;
+    }
+    
+    /* Join Section */
+    .join-content {
         padding: 30px 20px;
     }
     
+    .join-text h2 {
+        font-size: 1.5rem;
+    }
+    
+    .join-text p {
+        font-size: 0.95rem;
+    }
+    
+    .invite-card {
+        padding: 40px 20px;
+    }
+    
+    .invite-icon {
+        font-size: 3rem;
+    }
+    
+    .invite-card h2 {
+        font-size: 1.8rem;
+    }
+    
+    .invite-card p {
+        font-size: 1rem;
+    }
+    
+    /* Footer */
+    .footer-modern {
+        padding: 40px 0 20px;
+    }
+    
+    .footer-section h3 {
+        font-size: 1.2rem;
+    }
+    
+    .footer-section p,
+    .footer-links li {
+        font-size: 0.9rem;
+    }
+    
+    /* Modals */
+    .modal-content {
+        padding: 30px 20px;
+    }
+    
+    .modal-icon {
+        font-size: 3rem;
+    }
+    
+    .modal-content h3 {
+        font-size: 1.6rem;
+    }
+    
+    .modal-content input {
+        padding: 12px 15px;
+        font-size: 0.95rem;
+    }
+    
+    /* Forms */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 12px 15px;
+        font-size: 0.95rem;
+    }
+    
+    .form-group label {
+        font-size: 0.95rem;
+    }
+    
+    /* Hidden Key */
     .hidden-key {
         width: 45px;
         height: 45px;
         font-size: 1.2rem;
+        bottom: 20px;
+        left: 20px;
+    }
+    
+    /* Admin */
+    .admin-logo-icon {
+        font-size: 2rem;
+    }
+    
+    .admin-logo h1 {
+        font-size: 1.3rem;
+    }
+    
+    .admin-nav {
+        gap: 10px;
+    }
+    
+    .admin-nav-item {
+        min-width: 100px;
+        padding: 12px 15px;
+    }
+    
+    .admin-nav-item span {
+        font-size: 0.85rem;
+    }
+    
+    .admin-nav-item i {
+        font-size: 1.3rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .admin-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .admin-list-item {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .admin-list-item h4 {
+        font-size: 1.1rem;
+    }
+    
+    .admin-list-item p {
+        font-size: 0.85rem;
+    }
+    
+    /* Error 404 */
+    .error-icon {
+        font-size: 6rem;
+    }
+    
+    .error-code {
+        font-size: 5rem;
+    }
+    
+    .error-title {
+        font-size: 1.6rem;
+    }
+    
+    .error-text {
+        font-size: 0.95rem;
+    }
+    
+    .error-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .error-actions .btn-modern {
+        width: 100%;
+    }
+    
+    /* Contact Form */
+    .contact-form-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .contact-form-modern {
+        padding: 30px 20px;
+    }
+    
+    .map-card {
+        padding: 40px 20px;
+    }
+    
+    .map-icon {
+        font-size: 3rem;
+    }
+    
+    .map-placeholder h3 {
+        font-size: 1.5rem;
+    }
+    
+    /* Toast */
+    .toast {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        max-width: 90%;
+    }
+}
+
+/* Very Small Mobile (< 360px) */
+@media (max-width: 359px) {
+    .hero-title-modern {
+        font-size: 1.8rem;
+    }
+    
+    .section-title-modern {
+        font-size: 1.5rem;
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .btn-modern {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .quick-card,
+    .info-card,
+    .program-card-modern,
+    .tafsir-card {
+        padding: 20px 12px;
+    }
+    
+    .modal-content {
+        padding: 25px 15px;
     }
 }
 
@@ -1734,4 +2298,41 @@ body {
         background: white;
         color: black;
     }
+}
+body, .main-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+@media (max-width: 768px) {
+  /* مثال: منو بصورت عمودی بشه */
+  .menu {
+    display: block;
+    width: 100%;
+  }
+  .header, .content, .footer {
+    padding: 10px;
+  }
+  /* مثال: عکس‌ها یا بنرها عرض کامل پیدا کنن */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+.quick-access {
+  display: flex;
+  flex-wrap: wrap;
+}
+.quick-access a {
+  flex: 1 1 100%;
+  /* یعنی هر لینکی توی موبایل عرض 100% بگیره */
+  margin-bottom: 10px;
+}
+.hero-image, .banner {
+  width: 100%;
+  height: auto;
+}
+.some-large-element {
+  max-width: 100%;
+  overflow-x: hidden;
 }
