@@ -1676,47 +1676,60 @@ body {
         padding: 0 20px;
     }
     
-    /* Header & Navigation */
+    /* Header & Navigation - همه چیز در یک خط */
     .menu-toggle {
-        display: flex;
+        display: none; /* منوی همبرگری نداشته باشیم */
+    }
+    
+    .header-content {
+        flex-wrap: nowrap;
+        gap: 10px;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    
+    .logo {
+        flex-shrink: 0;
     }
     
     .logo-text h1 {
-        font-size: 1.4rem;
+        font-size: 1rem;
     }
     
     .logo-icon {
-        font-size: 2rem;
+        font-size: 1.5rem;
+    }
+    
+    .tagline {
+        display: none; /* پنهان کردن tagline در موبایل */
     }
     
     .nav {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        left: 0;
-        background: rgba(0,0,0,0.98);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        padding: 20px;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease;
-        border-bottom: 1px solid var(--glass-border);
-    }
-    
-    .nav.active {
-        max-height: 500px;
+        display: flex !important;
+        position: static;
+        background: transparent;
+        padding: 0;
+        max-height: none;
+        overflow: visible;
     }
     
     .nav ul {
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: row;
+        gap: 5px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0;
     }
     
     .nav a {
-        display: block;
-        padding: 15px 20px;
-        text-align: center;
+        padding: 8px 12px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+    }
+    
+    .admin-link {
+        border-width: 1px;
     }
     
     /* Hero Section */
@@ -2335,4 +2348,7 @@ body, .main-container {
 .some-large-element {
   max-width: 100%;
   overflow-x: hidden;
+}
+.navbar-toggler {
+  z-index: 9999; /* مطمئن شو دکمه روی همه قرار دارد */
 }
